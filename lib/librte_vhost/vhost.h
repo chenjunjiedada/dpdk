@@ -103,6 +103,8 @@ struct vhost_virtqueue {
 
 	uint16_t		last_avail_idx;
 	uint16_t		last_used_idx;
+	/* Last used index we notify to front end. */
+	uint16_t		signalled_used;
 #define VIRTIO_INVALID_EVENTFD		(-1)
 #define VIRTIO_UNINITIALIZED_EVENTFD	(-2)
 
@@ -211,6 +213,7 @@ struct vhost_msg {
 				(1ULL << VIRTIO_NET_F_GUEST_TSO4) | \
 				(1ULL << VIRTIO_NET_F_GUEST_TSO6) | \
 				(1ULL << VIRTIO_RING_F_INDIRECT_DESC) | \
+				(1ULL << VIRTIO_RING_F_EVENT_IDX) | \
 				(1ULL << VIRTIO_NET_F_MTU) | \
 				(1ULL << VIRTIO_F_IOMMU_PLATFORM))
 
